@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegance Evaluator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Elegance Evaluator</h1>
+        <form id="scoreForm">
+            <div class="form-group">
+                <label for="objectiveScore">Objective Score</label>
+                <input type="number" class="form-control" id="objectiveScore" required>
+            </div>
+            <div class="form-group">
+                <label for="greenPercentage">Green Percentage (%)</label>
+                <input type="number" class="form-control" id="greenPercentage" required>
+            </div>
+            <div class="form-group">
+                <label for="whitePercentage">White Percentage (%)</label>
+                <input type="number" class="form-control" id="whitePercentage" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Calculate</button>
+        </form>
+        <div class="result text-center">
+            <h2 id="result"></h2>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('scoreForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let objectiveScore = parseFloat(document.getElementById('objectiveScore').value);
+            let greenPercentage = parseFloat(document.getElementById('greenPercentage').value);
+            let whitePercentage = parseFloat(document.getElementById('whitePercentage').value);
+
+            let score = objectiveScore - (greenPercentage - whitePercentage) / 2;
+            document.getElementById('result').innerText = `The evaluated score is: ${score.toFixed(2)}`;
+        });
+    </script>
+</body>
+</html>
