@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>优雅评估器</title>
+    <title>优雅校准器</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">优雅评估器</h1>
+        <h1 class="text-center">优雅校准器</h1>
         <form id="scoreForm">
             <div class="form-group">
                 <label for="objectiveScore">客观分数</label>
@@ -40,11 +40,11 @@
         document.getElementById('scoreForm').addEventListener('submit', function(event) {
             event.preventDefault();
             let objectiveScore = parseFloat(document.getElementById('objectiveScore').value);
-            let greenPercentage = parseFloat(document.getElementById('greenPercentage').value);
-            let whitePercentage = 100 - greenPercentage;
+            let greenPercentage = parseFloat(document.getElementById('greenPercentage').value) / 100;
+            let whitePercentage = 1 - greenPercentage;
 
             let score = objectiveScore - (greenPercentage - whitePercentage) / 2;
-            document.getElementById('result').innerText = `评估得分是: ${score.toFixed(2)}`;
+            document.getElementById('result').innerText = `校准得分是: ${score.toFixed(2)}`;
         });
     </script>
 </body>
